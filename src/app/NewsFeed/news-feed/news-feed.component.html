@@ -1,0 +1,36 @@
+<p>news-feed works!</p>
+
+<div style="display: ruby; justify-content: inherit;">
+<select *ngIf="data.totalCount>0" (change)="changePageSize($event.target)" class="page-size" >          
+  <option *ngFor="let page of pageSizeArr" value="page" [value]="page">{{page}}</option> 
+</select>
+
+<pagination-controls *ngIf="data.totalCount>0"
+  class="pagi"
+  (pageChange)="getNews((pageNumber = $event),pageSize,'')"
+></pagination-controls>
+</div>
+  <div>
+<tr><input type="text" placeholder="Search.." (keyup)="searchNews($event)" ></tr>
+
+    <p style="border: 0px 0px 0px 0px solid"
+      *ngFor="
+        let item of data.items
+          | paginate
+            : {
+                itemsPerPage: pageSize,
+                currentPage: pageNumber,
+                totalItems: totalCount
+              }
+      "
+    >
+      <tr>
+      <td> <span>{{ item.title }}</span> <br /> </td>
+    <td><a class="btn btn-primary" href="{{item.newsLink}}" target="_blank">Go</a></td>
+      </tr>
+    </p>
+  </div> 
+
+<label style="margin-left: 10px;">News Count : {{totalCount}}</label>
+
+  
