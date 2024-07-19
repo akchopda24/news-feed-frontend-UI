@@ -1,5 +1,3 @@
-<p>news-feed works!</p>
-
 <div style="display: ruby; justify-content: inherit;">
 <select *ngIf="data.totalCount>0" (change)="changePageSize($event.target)" class="page-size" >          
   <option *ngFor="let page of pageSizeArr" value="page" [value]="page">{{page}}</option> 
